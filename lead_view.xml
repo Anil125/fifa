@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="crm_lead_categ_action" model="ir.ui.view">
+            <field name="name">crm.lead.form</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_case_form_view_leads"/>
+            <field name="arch" type="xml">
+			 <div class="oe_right oe_button_box" name="buttons">
+                        <button class="oe_inline oe_stat_button" type="action"
+                            context="{'default_opportunity_id': active_id, 'search_default_opportunity_id': active_id, 'default_partner_id': partner_id, 'default_duration': 1.0}"
+                            name="%(crm.crm_case_categ_phone_incoming0)d" icon="fa-phone">
+                            <div>Meeting</div>
+                        </button>
+                    </div>
+			<field name='stage_id' position='replace'/> 
+			<xpath expr="//form/header">			
+				<button name='cancel_case' string='Cancel Case' type='object'  class="oe_highlight"/>
+				<field name="state_lead" widget="statusbar"/>
+			</xpath>
+
+		<xpath expr="//form/sheet/group/group/field[@name='function']" position="replace">			
+			<field name="function1"/>
+			<!--<field name="function"/>-->
+		</xpath>
+		<xpath expr="//form/sheet/group/group/field[@name='priority']" position="replace">			
+			<field name="lead_source" required='True'/>
+		</xpath>	
+		<xpath expr="//form/sheet/group/group/field[@name='categ_ids']" position="replace">			
+			<field name="categories" required='True'/>
+		</xpath>
+			
+		<xpath expr="//form/sheet/group/group/field[@name='user_id']" position="replace">
+			<field name="user_id" required='True'/>
+			<field name="section_id" required='True'/>
+		</xpath>
+		<xpath expr="//form/sheet/group">
+			<group>
+				<field name='compny_id' required='True'/>
+				<field name='priority_ids' required='True'/>
+			</group>		
+		</xpath>
+		<xpath expr="//form/sheet/group">
+			<group>
+				<field name='active_id' required='True'/>
+				<field name='brand_id' required='True'/>
+			</group>
+		</xpath>	
+		
+<!--<field name="function" position="after">			
+			<field name="function"/>			
+		</field>-->
+		</field>
+        </record>
+    </data>
+</openerp>
